@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 g = input("Enter poslaju tracking number : ") 
 
 url = 'https://www.poslaju.com.my/track-trace-v2/'
-myobj = {'trackingNo03': g}
+myobj = {'trackingNo03': g + '23'}
 
 x = requests.post(url, data = myobj)
 
@@ -15,6 +15,9 @@ end_of_table_idx = x.text.rfind('</table>', x.text.find('tbDetails'), len(x.text
 
 soup = BeautifulSoup(x.text[start_of_table_idx:end_of_table_idx+len('</table>')], 'lxml')
 
+if soup.tbody.tr.td.text.strip() == 'No Record Found':
+    print('No record found!')
+    exit()
+
 for td in soup.tbody.tr.contents:
-  print(td.text)
-  
+    print(td.text)
