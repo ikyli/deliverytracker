@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 g = input("Enter poslaju tracking number : ") 
 
 url = 'https://www.poslaju.com.my/track-trace-v2/'
-myobj = {'trackingNo03': g + '23'}
+myobj = {'trackingNo03': g }
 
 x = requests.post(url, data = myobj)
 
