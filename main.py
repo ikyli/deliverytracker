@@ -5,8 +5,12 @@ from bs4 import BeautifulSoup
 
 g = input("Enter poslaju tracking number : ") 
 
+while len(g)>14:
+    print('Invalid tracking number')
+    g = input("Enter poslaju tracking number : ")
+
 url = 'https://www.poslaju.com.my/track-trace-v2/'
-myobj = {'trackingNo03': g }
+myobj = {'trackingNo03': g.upper() }
 
 x = requests.post(url, data = myobj)
 
